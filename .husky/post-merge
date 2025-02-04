@@ -1,0 +1,10 @@
+pnpm install
+
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "Decrypting .env files"
+sh ./scripts/decrypt-env.sh $(cat ./SECRET_KEY_ENV.txt)
+
+
+exit 0

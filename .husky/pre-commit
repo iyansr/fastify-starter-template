@@ -1,0 +1,8 @@
+pnpm lint
+npx lint-staged
+
+echo "Encrypting .env files"
+sh ./scripts/encrypt-env.sh $(cat ./SECRET_KEY_ENV.txt)
+
+git add .env.enc
+exit 0
