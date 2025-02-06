@@ -1,13 +1,13 @@
 import { createServer } from './server';
 
 declare module 'fastify' {
-  //   interface FastifyRequest {
-  //        Add Request Interface Here
-  //   }
-  //
-  //   interface FastifyInstance {
-  //        Add Instance Interface Here
-  //   }
+  interface FastifyRequest {
+    userId: string;
+  }
+
+  interface FastifyInstance {
+    verifyJwt: (request: FastifyRequest) => Promise<void>;
+  }
 }
 
 const run = async () => {

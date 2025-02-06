@@ -6,10 +6,10 @@ export default defineConfig(({ watch }) => ({
   dts: false, // Generate TypeScript declaration files
   sourcemap: false, // Include sourcemaps
   clean: true, // Clean the output folder before building
-  minify: true,
+  minify: false,
   outDir: 'dist',
   splitting: !watch,
-  target: 'es2020',
+  target: 'es2016',
   tsconfig: 'tsconfig.json',
-  onSuccess: !watch ? '' : 'node ./dist/app.js   '
+  onSuccess: !watch ? '' : 'node ./dist/app.js'
 }));

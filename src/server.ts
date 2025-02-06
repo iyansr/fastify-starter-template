@@ -1,13 +1,22 @@
 import fastify from 'fastify';
+import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
+
+import { decorate } from './decorator';
+import { routesV1 } from './modules/routes/routes.v1';
 
 export const createServer = async () => {
   const server = fastify();
+
+  await decorate(server);
 
   server.get('/ping', async (_request, reply) => {
     return reply.send({
       message: 'Pong'
     });
   });
+
+  server.setValidatorCompiler(validatorCompiler);
+  server.setSerializerCompiler(serializerCompiler);
 
   const currentDateOpt: Intl.DateTimeFormatOptions = {
     weekday: 'long',
@@ -27,6 +36,8 @@ export const createServer = async () => {
       version: '1.0.0'
     };
   });
+
+  server.register(routesV1, { prefix: 'api/v1' });
 
   return server;
 };
